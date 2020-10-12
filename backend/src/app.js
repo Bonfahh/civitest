@@ -10,7 +10,7 @@ app.use(cors());
 const messages = [
   {
     id: 1,
-    timestamp: 1602294860,
+    timestamp: 1602528926,
     subject: 'Hi there!',
     detail: 'Hi there David, just passing to know how are you.',
     read: false,
@@ -46,7 +46,12 @@ const messages = [
 ];
 
 app.get("/messages", (request, response) => {
-  return response.json(messages);
+
+  const messagesSorted = messages.sort((a, b) => {
+    return a.timestamp - b.timestamp;
+  });
+
+  return response.json(messagesSorted);
 });
 
 app.post("/messages", (request, response) => {
