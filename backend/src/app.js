@@ -1,11 +1,17 @@
 const express = require("express");
 const cors = require("cors");
-const { uuid } = require("uuidv4");
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
+
+const requestMiddleware = (req, res, next) => {
+  console.log(`${req.url} ${req.method}`)
+  next();
+};
+
+app.use(requestMiddleware);
 
 const messages = [
   {
